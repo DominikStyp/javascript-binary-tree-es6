@@ -37,38 +37,26 @@ export class BinTree {
 
   getInOrder() {
     let rootValue = this.rootNode.value;
-    let leftArr = [];
-    let rightArr = [];
+    this.resultArr = [];
 
-    if (this.rootNode.leftChild) {
-      // left
-      this.getNodesValues(rootValue, this.rootNode.leftChild, leftArr);
-    }
+    this.traverseNodes(this.rootNode);
 
-    if (this.rootNode.rightChild) {
-      // right
-      this.getNodesValues(rootValue, this.rootNode.rightChild, rightArr);
-    }
-
-    return [...leftArr, rootValue, ...rightArr];
+    return this.resultArr;
   }
 
-  getNodesValues(compareValue, binNode, arr) {
-    if (binNode.value > compareValue) {
-      arr.push(binNode.value);
+  traverseNodes(binNode) {
+    if (!binNode) {
+      return;
     }
 
-    if (binNode.value < compareValue) {
-      arr.unshift(binNode.value);
-    }
+    // first recursively traverse left branches
+    this.traverseNodes(binNode.leftChild);
 
-    if (binNode.leftChild) {
-      this.getNodesValues(binNode.value, binNode.leftChild, arr);
-    }
+    // push all left childs from bottom to the top
+    this.resultArr.push(binNode.value);
 
-    if (binNode.rightChild) {
-      this.getNodesValues(binNode.value, binNode.rightChild, arr);
-    }
+    //  recursively traverse right branches
+    this.traverseNodes(binNode.rightChild);
   }
 }
 
