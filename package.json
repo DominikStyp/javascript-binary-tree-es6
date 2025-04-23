@@ -2,5 +2,11 @@
   "name": "js-byoita",
   "version": "0.0.0",
   "private": true,
-  "dependencies": {}
+  "scripts": {
+    "start": "serve ."
+  },
+  "dependencies": {
+    "serve": "^14.2.0"
+  }
+
 }
